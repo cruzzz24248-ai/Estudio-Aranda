@@ -67,13 +67,19 @@ document.addEventListener('DOMContentLoaded', () => {
     function goToSlide(index) {
       // Remover clase activa de diapositiva y punto anterior
       heroSlides[currentSlide].classList.remove('active');
-      if (dots[currentSlide]) dots[currentSlide].classList.remove('active');
+      if (dots[currentSlide]) {
+        dots[currentSlide].classList.remove('active');
+        dots[currentSlide].setAttribute('aria-pressed', 'false');
+      }
 
       currentSlide = index;
 
       // Activar nueva diapositiva y punto
       heroSlides[currentSlide].classList.add('active');
-      if (dots[currentSlide]) dots[currentSlide].classList.add('active');
+      if (dots[currentSlide]) {
+        dots[currentSlide].classList.add('active');
+        dots[currentSlide].setAttribute('aria-pressed', 'true');
+      }
 
       // Actualizar texto y enlace del proyecto en pantalla
       const activeSlide = heroSlides[currentSlide];
@@ -102,7 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
     dots.forEach((dot, idx) => {
       dot.addEventListener('click', () => {
         goToSlide(idx);
-        resetTimer(); // Reinicia el contador cuando el usuario interactúa
+        resetTimer();
       });
     });
 
