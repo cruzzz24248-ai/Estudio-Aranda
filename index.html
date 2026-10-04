@@ -1,10 +1,37 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es-AR">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ESTUDIO ARANDA — Arquitectura · Territorio · Materia</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="Estudio Aranda es un estudio de arquitectura de Córdoba, Argentina, especializado en proyectos residenciales, hospitalidad y enoturismo integrados al paisaje, la luz y la materia.">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="author" content="Estudio Aranda">
+  <meta name="theme-color" content="#0D0D0C">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <link rel="canonical" href="https://arquitectoaranda.netlify.app/">
+
+  <title>Estudio Aranda | Arquitectura en Córdoba, Argentina</title>
+
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_AR">
+  <meta property="og:site_name" content="Estudio Aranda">
+  <meta property="og:title" content="Estudio Aranda | Arquitectura en Córdoba, Argentina">
+  <meta property="og:description" content="Arquitectura residencial, hospitalidad y enoturismo en diálogo con el paisaje, la luz y la materia.">
+  <meta property="og:url" content="https://arquitectoaranda.netlify.app/">
+  <meta property="og:image" content="https://arquitectoaranda.netlify.app/img/casa%20olivo/casa%20del%20olivo.jpg">
+  <meta property="og:image:alt" content="Casa del Olivo, proyecto residencial de Estudio Aranda en Traslasierra, Córdoba">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Estudio Aranda | Arquitectura en Córdoba, Argentina">
+  <meta name="twitter:description" content="Arquitectura residencial, hospitalidad y enoturismo en diálogo con el paisaje, la luz y la materia.">
+  <meta name="twitter:image" content="https://arquitectoaranda.netlify.app/img/casa%20olivo/casa%20del%20olivo.jpg">
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%230D0D0C'/%3E%3Ctext x='50' y='67' text-anchor='middle' font-family='Georgia,serif' font-size='52' fill='%23E9E5DC'%3EA%3C/text%3E%3C/svg%3E">
   
+  <link rel="preload" as="image" href="img/casa%20olivo/casa%20del%20olivo.jpg" fetchpriority="high">
+
+  <link rel="preconnect" href="https://images.unsplash.com">
+
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,11 +39,27 @@
   
   <!-- Estilos CSS -->
   <link rel="stylesheet" href="style.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Estudio Aranda",
+    "url": "https://arquitectoaranda.netlify.app/",
+    "description": "Estudio de arquitectura de Córdoba, Argentina, especializado en proyectos residenciales, hospitalidad y enoturismo en diálogo con el paisaje.",
+    "telephone": "+54 9 351 215 6437",
+    "email": "hola@estudioaranda.com",
+    "address": {"@type": "PostalAddress", "addressLocality": "Córdoba", "addressCountry": "AR"},
+    "founder": {"@type": "Person", "name": "Mateo Aranda", "jobTitle": "Arquitecto"},
+    "sameAs": ["https://instagram.com", "https://linkedin.com"]
+  }
+  </script>
 </head>
 <body>
+  <a class="skip-link" href="#contenido-principal">Saltar al contenido principal</a>
 
   <!-- Overlay / Telón para cerrar al hacer clic afuera -->
-  <div class="nav-overlay" id="nav-overlay"></div>
+  <div class="nav-overlay" id="nav-overlay" aria-hidden="true"></div>
 
   <!-- ==========================================
        1. HEADER / NAVBAR PRINCIPAL
@@ -39,7 +82,7 @@
       </nav>
 
       <!-- Botón Hamburguesa Animado -->
-      <button class="mobile-toggle" id="mobile-toggle" aria-label="Abrir menú de navegación" aria-expanded="false">
+      <button type="button" class="mobile-toggle" id="mobile-toggle" aria-label="Abrir menú de navegación" aria-controls="nav-menu" aria-expanded="false">
         <span class="hamburger-line"></span>
         <span class="hamburger-line"></span>
       </button>
@@ -47,18 +90,18 @@
     </div>
   </header>
 
-  <main>
+  <main id="contenido-principal">
 
   <!-- ==========================================
        2. HERO SECTION (CINEMATIC FULLSCREEN)
   =========================================== -->
-  <section class="hero" id="hero">
+  <section class="hero" id="hero" aria-labelledby="hero-title">
     <!-- Slider de Imágenes de Fondo con metadata de proyecto -->
     <div class="hero-slides">
-      <div class="hero-slide active" style="background-image: url('img/casa olivo/casa del olivo.jpg');" data-project="CASA DEL OLIVO" data-num="01 / 04" data-link="casa-del-olivo.html"></div>
-      <div class="hero-slide" style="background-image: url('img/refugio la cumbre.jpg');" data-project="REFUGIO LA CUMBRE" data-num="02 / 04" data-link="#obras"></div>
-      <div class="hero-slide" style="background-image: url('img/casa umbral.jpg');" data-project="CASA UMBRAL" data-num="03 / 04" data-link="#obras"></div>
-      <div class="hero-slide" style="background-image: url('img/bodega del valle.jpg');" data-project="BODEGA DEL VALLE" data-num="04 / 04" data-link="#obras"></div>
+      <div class="hero-slide active" role="img" aria-label="Casa del Olivo, proyecto residencial en Traslasierra, Córdoba" style="background-image: url('img/casa olivo/casa del olivo.jpg');" data-project="CASA DEL OLIVO" data-num="01 / 04" data-link="casa-del-olivo.html"></div>
+      <div class="hero-slide" role="img" aria-label="Refugio La Cumbre, proyecto de hospitalidad en Córdoba" style="background-image: url('img/refugio la cumbre.jpg');" data-project="REFUGIO LA CUMBRE" data-num="02 / 04" data-link="#obras"></div>
+      <div class="hero-slide" role="img" aria-label="Casa Umbral, proyecto residencial en Mendoza" style="background-image: url('img/casa umbral.jpg');" data-project="CASA UMBRAL" data-num="03 / 04" data-link="#obras"></div>
+      <div class="hero-slide" role="img" aria-label="Bodega del Valle, proyecto de enoturismo en Valle de Uco, Mendoza" style="background-image: url('img/bodega del valle.jpg');" data-project="BODEGA DEL VALLE" data-num="04 / 04" data-link="#obras"></div>
     </div>
 
     <!-- Overlay cinematográfico ligero (protege el texto sin apagar la foto) -->
@@ -68,7 +111,7 @@
       <div class="hero-content">
         <span class="hero-tag">ESTUDIO DE ARQUITECTURA</span>
         
-        <h1 class="hero-title">
+        <h1 class="hero-title" id="hero-title">
           Espacios<br>
           que habitan<br>
           el paisaje.
@@ -81,7 +124,7 @@
 
       <!-- Pie del Hero: Ficha viva del proyecto en pantalla + Indicadores -->
       <div class="hero-footer">
-        <div class="hero-project-info">
+        <div class="hero-project-info" aria-live="polite">
           <span class="hero-project-counter" id="hero-slide-num">01 / 04</span>
           <span class="hero-project-divider">&mdash;</span>
           <a href="casa-del-olivo.html" class="hero-project-title" id="hero-slide-name">
@@ -92,10 +135,10 @@
 
         <!-- Indicadores interactivos (Puntos navegables) -->
         <div class="hero-dots" id="hero-dots">
-          <button class="hero-dot active" aria-label="Ver proyecto 1"></button>
-          <button class="hero-dot" aria-label="Ver proyecto 2"></button>
-          <button class="hero-dot" aria-label="Ver proyecto 3"></button>
-          <button class="hero-dot" aria-label="Ver proyecto 4"></button>
+          <button type="button" class="hero-dot active" aria-label="Ver proyecto 1" aria-pressed="true"></button>
+          <button type="button" class="hero-dot" aria-label="Ver proyecto 2" aria-pressed="false"></button>
+          <button type="button" class="hero-dot" aria-label="Ver proyecto 3" aria-pressed="false"></button>
+          <button type="button" class="hero-dot" aria-label="Ver proyecto 4" aria-pressed="false"></button>
         </div>
       </div>
     </div>
@@ -104,13 +147,13 @@
   <!-- ==========================================
        3. SECCIÓN OBRAS / PORTFOLIO
   =========================================== -->
-  <section class="obras" id="obras">
+  <section class="obras" id="obras" aria-labelledby="obras-title">
     <div class="container">
       
       <!-- Cabecera de la Sección -->
       <div class="obras-header">
         <span class="section-tag">OBRAS</span>
-        <h2 class="section-title">
+        <h2 class="section-title" id="obras-title">
           Proyectos que encuentran<br>
           su lugar.
         </h2>
@@ -120,7 +163,7 @@
       </div>
 
       <!-- Barra de Filtros Interactiva -->
-      <div class="obras-filters" role="tablist" aria-label="Filtrar proyectos por categoría">
+      <div class="obras-filters" role="group" aria-label="Filtrar proyectos por categoría">
         <button class="filter-btn active" data-filter="all">TODOS</button>
         <button class="filter-btn" data-filter="residencial">RESIDENCIAL</button>
         <button class="filter-btn" data-filter="hospitalidad">HOSPITALIDAD</button>
@@ -134,7 +177,7 @@
         <article class="obra-card" data-category="residencial">
           <a href="casa-del-olivo.html" class="obra-card-inner" aria-label="Ver proyecto Casa del Olivo">
             <div class="obra-img-wrapper">
-              <img src="img/casa olivo/casa del olivo.jpg" alt="Casa del Olivo - Traslasierra" class="obra-img" loading="lazy">
+              <img src="img/casa olivo/casa del olivo.jpg" alt="Casa del Olivo, vivienda unifamiliar en Traslasierra, Córdoba" class="obra-img" loading="lazy" decoding="async">
             </div>
             <div class="obra-content">
               <span class="obra-num">01</span>
@@ -153,7 +196,7 @@
         <article class="obra-card" data-category="hospitalidad">
           <a href="#" class="obra-card-inner" aria-label="Ver proyecto Refugio La Cumbre">
             <div class="obra-img-wrapper">
-              <img src="img/refugio la cumbre.jpg" alt="Refugio La Cumbre" class="obra-img" loading="lazy">
+              <img src="img/refugio la cumbre.jpg" alt="Refugio La Cumbre, proyecto de hospitalidad en Córdoba" class="obra-img" loading="lazy" decoding="async">
             </div>
             <div class="obra-content">
               <span class="obra-num">02</span>
@@ -172,7 +215,7 @@
         <article class="obra-card" data-category="residencial">
           <a href="#" class="obra-card-inner" aria-label="Ver proyecto Casa Umbral">
             <div class="obra-img-wrapper">
-              <img src="img/casa umbral.jpg" alt="Casa Umbral - Mendoza" class="obra-img" loading="lazy">
+              <img src="img/casa umbral.jpg" alt="Casa Umbral, vivienda residencial en Chacras de Coria, Mendoza" class="obra-img" loading="lazy" decoding="async">
             </div>
             <div class="obra-content">
               <span class="obra-num">03</span>
@@ -191,7 +234,7 @@
         <article class="obra-card" data-category="comercial">
           <a href="#" class="obra-card-inner" aria-label="Ver proyecto Bodega del Valle">
             <div class="obra-img-wrapper">
-              <img src="img/bodega del valle.jpg" alt="Bodega del Valle" class="obra-img" loading="lazy">
+              <img src="img/bodega del valle.jpg" alt="Bodega del Valle, proyecto de enoturismo en Valle de Uco, Mendoza" class="obra-img" loading="lazy" decoding="async">
             </div>
             <div class="obra-content">
               <span class="obra-num">04</span>
@@ -212,7 +255,7 @@
   <!-- ==========================================
        4. SECCIÓN ESTUDIO / TRAYECTORIA
   =========================================== -->
-  <section class="estudio" id="estudio">
+  <section class="estudio" id="estudio" aria-labelledby="estudio-title">
     <div class="container">
       
       <!-- Bloque Principal 3 Columnas (Texto - Retrato - Trayectoria) -->
@@ -221,7 +264,7 @@
         <!-- Columna 1: Filosofía y Manifiesto -->
         <div class="estudio-col-text">
           <span class="section-tag">ESTUDIO</span>
-          <h2 class="section-title">
+          <h2 class="section-title" id="estudio-title">
             Arquitectura<br>
             con propósito.
           </h2>
@@ -326,7 +369,7 @@
   <!-- ==========================================
        5. SECCIÓN MATERIA
   =========================================== -->
-  <section class="materia" id="materia">
+  <section class="materia" id="materia" aria-labelledby="materia-title">
     <div class="container">
       
       <div class="materia-grid">
@@ -334,7 +377,7 @@
         <!-- Columna Izquierda: Encabezado Fijo/Editorial -->
         <div class="materia-header">
           <span class="section-tag">MATERIA</span>
-          <h2 class="section-title">
+          <h2 class="section-title" id="materia-title">
             La esencia en<br>
             cada material.
           </h2>
@@ -349,7 +392,7 @@
           <!-- Material 01: Piedra -->
           <div class="materia-item">
             <div class="materia-img-wrapper">
-              <img src="img/material/piedra.jpg" alt="Textura de Piedra" class="materia-img" loading="lazy">
+              <img src="img/material/piedra.jpg" alt="Textura y materialidad de piedra en arquitectura" class="materia-img" loading="lazy" decoding="async">
             </div>
             <div class="materia-info">
               <div class="materia-text">
@@ -363,7 +406,7 @@
           <!-- Material 02: Hormigón -->
           <div class="materia-item">
             <div class="materia-img-wrapper">
-              <img src="img/material/hormigon.jpg" alt="Textura de Hormigón" class="materia-img" loading="lazy">
+              <img src="img/material/hormigon.jpg" alt="Textura y materialidad de hormigón en arquitectura" class="materia-img" loading="lazy" decoding="async">
             </div>
             <div class="materia-info">
               <div class="materia-text">
@@ -377,7 +420,7 @@
           <!-- Material 03: Madera -->
           <div class="materia-item">
             <div class="materia-img-wrapper">
-              <img src="img/material/madera.jpg" alt="Textura de Madera" class="materia-img" loading="lazy">
+              <img src="img/material/madera.jpg" alt="Textura y materialidad de madera en arquitectura" class="materia-img" loading="lazy" decoding="async">
             </div>
             <div class="materia-info">
               <div class="materia-text">
@@ -391,7 +434,7 @@
           <!-- Material 04: Vidrio -->
           <div class="materia-item">
             <div class="materia-img-wrapper">
-              <img src="img/material/vidrio.jpg" alt="Textura de Vidrio" class="materia-img" loading="lazy">
+              <img src="img/material/vidrio.jpg" alt="Textura y materialidad de vidrio en arquitectura" class="materia-img" loading="lazy" decoding="async">
             </div>
             <div class="materia-info">
               <div class="materia-text">
@@ -419,13 +462,13 @@
   <!-- ==========================================
        6. SECCIÓN PROCESO & PREGUNTAS FRECUENTES
   =========================================== -->
-  <section class="proceso" id="proceso">
+  <section class="proceso" id="proceso" aria-labelledby="proceso-title">
     <div class="container">
       
       <!-- Encabezado de Sección -->
       <div class="proceso-header">
         <span class="section-tag">METODOLOGÍA DE TRABAJO</span>
-        <h2 class="section-title">
+        <h2 class="section-title" id="proceso-title">
           Un proceso riguroso,<br>
           cuatro fases clave.
         </h2>
@@ -590,7 +633,7 @@
   <!-- ==========================================
        7. SECCIÓN CONTACTO
   =========================================== -->
-  <section class="contacto" id="contacto">
+  <section class="contacto" id="contacto" aria-labelledby="contacto-title">
     <div class="container">
       
       <div class="contacto-grid">
@@ -598,19 +641,24 @@
         <!-- Columna Izquierda: Formulario -->
         <div class="contacto-form-wrapper">
           <span class="section-tag">CONTACTO</span>
-          <h2 class="contacto-title">¿Dónde empieza<br>tu proyecto?</h2>
+          <h2 class="contacto-title" id="contacto-title">¿Dónde empieza<br>tu proyecto?</h2>
           <p class="contacto-desc">Hablemos sobre el lugar, las ideas y las posibilidades.</p>
 
-          <form class="contacto-form" action="#" method="POST" onsubmit="event.preventDefault();">
+          <form class="contacto-form" name="contacto-estudio-aranda" method="POST" action="/" data-netlify="true" netlify-honeypot="bot-field">
+            <input type="hidden" name="form-name" value="contacto-estudio-aranda">
+            <div class="form-group" hidden aria-hidden="true">
+              <label for="bot-field">No completar este campo</label>
+              <input type="text" id="bot-field" name="bot-field" tabindex="-1" autocomplete="off">
+            </div>
             
             <div class="form-row">
               <div class="form-group">
                 <label for="nombre">Nombre *</label>
-                <input type="text" id="nombre" name="nombre" required placeholder="">
+                <input type="text" id="nombre" name="nombre" autocomplete="name" required placeholder="">
               </div>
               <div class="form-group">
                 <label for="email">Email *</label>
-                <input type="email" id="email" name="email" required placeholder="">
+                <input type="email" id="email" name="email" autocomplete="email" required placeholder="">
               </div>
             </div>
 
@@ -627,7 +675,7 @@
               </div>
               <div class="form-group">
                 <label for="ubicacion">Ubicación *</label>
-                <select id="ubicacion" name="ubicacion" required>
+                <select id="ubicacion" name="ubicacion" autocomplete="address-level2" required>
                   <option value="" disabled selected hidden></option>
                   <option value="cordoba">Córdoba</option>
                   <option value="buenos_aires">Buenos Aires</option>
@@ -702,8 +750,8 @@
                   <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
                 </svg>
                 <div class="social-links">
-                  <a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a>
-                  <a href="https://linkedin.com" target="_blank" rel="noopener">Linkedin</a>
+                  <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a>
+                  <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">Linkedin</a>
                 </div>
               </div>
 
@@ -747,7 +795,7 @@
         </div>
 
         <!-- Navegación Rápida (Idéntica al Navbar) -->
-        <nav class="footer-nav">
+        <nav class="footer-nav" aria-label="Navegación del pie de página">
           <a href="#obras">OBRAS</a>
           <a href="#estudio">ESTUDIO</a>
           <a href="#materia">MATERIA</a>
@@ -756,7 +804,7 @@
         </nav>
 
         <!-- Botón Volver Arriba -->
-        <a href="#hero" class="back-to-top">
+        <a href="#hero" class="back-to-top" aria-label="Volver al inicio de la página">
           Volver arriba <span>&uarr;</span>
         </a>
 
@@ -783,5 +831,6 @@
   </main>
   <!-- Lógica JavaScript -->
   <script src="script.js" defer></script>
+  <noscript><p class="noscript-message">Este sitio utiliza JavaScript para algunas transiciones y filtros. El contenido principal permanece disponible sin JavaScript.</p></noscript>
 </body>
 </html>
