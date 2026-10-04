@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Casa del Olivo — ESTUDIO ARANDA</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- Estilos CSS compartidos -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="obra-detalle-body">
+
+  <!-- NAVEGACIÓN SUPERIOR SUBPÁGINA -->
+  <!-- ==========================================
+       1. HEADER / NAVBAR PRINCIPAL
+  =========================================== -->
+  <header class="header">
+    <div class="container header-container">
+      
+      <!-- Marca / Logo -->
+      <a href="index.html" class="brand-logo" aria-label="Estudio Aranda - Inicio">
+        <span class="logo-title">ESTUDIO ARANDA</span>
+      </a>
+
+      <!-- Navegación Principal (Redirige a secciones de index.html) -->
+      <nav class="nav-menu" id="nav-menu" aria-label="Navegación principal">
+        <a href="index.html#obras" class="nav-link">OBRAS</a>
+        <a href="index.html#estudio" class="nav-link">ESTUDIO</a>
+        <a href="index.html#materia" class="nav-link">MATERIA</a>
+        <a href="index.html#proceso" class="nav-link">PROCESO</a>
+        <a href="index.html#contacto" class="nav-link">CONTACTO</a>
+      </nav>
+
+      <!-- Botón Hamburguesa Animado -->
+      <button class="mobile-toggle" id="mobile-toggle" aria-label="Abrir menú de navegación" aria-expanded="false">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+
+    </div>
+  </header>
+
+  <!-- Overlay para menú Mobile -->
+  <div class="nav-overlay" id="nav-overlay"></div>
+
+
+    <main class="obra-main">
+
+    <!-- HERO IMPONENTE -->
+    <section class="obra-hero">
+      <img src="img/casa olivo/casa del olivo.jpg" alt="Casa del Olivo - Vista Exterior" class="obra-hero-img">
+    </section>
+
+    <!-- ENCABEZADO Y FICHA TÉCNICA EDITORIAL -->
+    <section class="container">
+      <div class="obra-header-section">
+        <div class="obra-header-info">
+          <span class="section-tag">01 &mdash; RESIDENCIAL</span>
+          <h1 class="obra-title">Casa del Olivo</h1>
+          <p class="obra-subtitle">Traslasierra, Córdoba &middot; 2024</p>
+        </div>
+
+        <div class="obra-ficha-tecnica">
+          <div class="ficha-item">
+            <span class="ficha-label">Superficie</span>
+            <span class="ficha-val">206 m²</span>
+          </div>
+          <div class="ficha-item">
+            <span class="ficha-label">Programa</span>
+            <span class="ficha-val">Vivienda unifamiliar</span>
+          </div>
+          <div class="ficha-item">
+            <span class="ficha-label">Estado</span>
+            <span class="ficha-val">Construida</span>
+          </div>
+          <div class="ficha-item">
+            <span class="ficha-label">Orientación</span>
+            <span class="ficha-val">Noroeste</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONCEPTO & MANIFIESTO -->
+    <section class="container">
+      <div class="obra-concepto-grid">
+        <div class="concepto-text">
+          <span class="section-tag">MEMORIA DESCRIPTIVA</span>
+          <h2 class="concepto-title">Una casa entre árboles.</h2>
+          <p class="concepto-desc">
+            La Casa del Olivo nace del deseo de habitar el paisaje sin imponerse. Se emplaza en una ladera natural, combinando piedra, hormigón y madera para generar una conexión continua entre el interior y el entorno.
+          </p>
+        </div>
+
+        <div class="concepto-galeria-mini">
+          <div class="mini-foto-item">
+            <img src="img/casa olivo/casa del olivo vista exterior.jpg" alt="Casa del Olivo vista exterior">
+          </div>
+          <div class="mini-foto-item">
+            <img src="img/casa olivo/casa del olivo sala de estar.jpg" alt="Casa del Olivo sala de estar">
+          </div>
+        </div>
+
+        <div class="concepto-action">
+          <a href="index.html#materia" class="btn-materiales">EXPLORAR MATERIA &rarr;</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALERÍA PRINCIPAL DE ALTO IMPACTO -->
+    <section class="container obra-galeria-section">
+      <div class="galeria-header-desktop">
+        <span class="section-tag">REGISTRO FOTOGRÁFICO</span>
+        <h3 class="galeria-title-desktop">Galería de obra</h3>
+      </div>
+      
+      <div class="galeria-viewer-large">
+        <!-- Nombre y número arriba de la imagen -->
+        <div id="galeria-counter" class="galeria-counter">CASA DEL OLIVO &nbsp;&mdash;&nbsp; 01 / 07</div>
+
+        <div class="galeria-img-container">
+          <img id="galeria-img" src="img/casa olivo/casa del olivo.jpg" alt="Galería Casa del Olivo">
+        </div>
+
+        <!-- Botones en las esquinas inferiores -->
+        <div class="galeria-controls-bottom">
+          <button id="galeria-prev" class="arrow-btn" aria-label="Anterior">&larr; ANTERIOR</button>
+          <button id="galeria-next" class="arrow-btn" aria-label="Siguiente">SIGUIENTE &rarr;</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- DOCUMENTACIÓN TÉCNICA Y PLANOS -->
+    <section class="container obra-planos-section">
+      <div class="planos-header">
+        <span class="section-tag">DOCUMENTACIÓN TÉCNICA</span>
+        <h3 class="planos-title-desktop">Planos y cortes</h3>
+      </div>
+
+      <div class="planos-grid-desktop">
+        <div class="plano-card">
+          <div class="plano-img-wrapper">
+            <img src="img/casa olivo/casa del olivo plano planta baja.jpg" alt="Planta alta">
+          </div>
+          <span class="plano-caption">01 &mdash; Planta Baja</span>
+        </div>
+
+        <div class="plano-card">
+          <div class="plano-img-wrapper">
+            <img src="img/casa olivo/casa del olivo plano corte.jpg" alt="Corte">
+          </div>
+          <span class="plano-caption">02 &mdash; Corte Transversal</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- PAGINACIÓN ENTRE PROYECTOS -->
+    <section class="container">
+      <nav class="obra-pagination" aria-label="Navegación entre proyectos">
+        <a href="index.html#obras" class="page-link">&larr; VOLVER A OBRAS</a>
+        <a href="#" class="page-link">SIGUIENTE PROYECTO &rarr;</a>
+      </nav>
+    </section>
+
+  </main>
+
+  
+<script src="script.js"></script>
+
+</body>
+</html>
