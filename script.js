@@ -1,275 +1,151 @@
 /* ==========================================================================
-   ESTUDIO ARANDA — LÓGICA DE NAVEGACIÓN Y MENÚ MOBILE
+   ESTUDIO ARANDA — SCRIPT ÚNICO
+   Menú móvil, hero slider, filtros, slider de contacto, galería de proyecto
+   y animaciones de scroll.
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
+
+  // ---------- MENÚ MÓVIL ----------
   const mobileToggle = document.getElementById('mobile-toggle');
   const navMenu = document.getElementById('nav-menu');
   const navOverlay = document.getElementById('nav-overlay');
-  const navLinks = document.querySelectorAll('.nav-link');
 
-  // Función para abrir el menú
-  const openMenu = () => {
-    mobileToggle.classList.add('is-active');
-    navMenu.classList.add('is-open');
-    navOverlay.classList.add('is-active');
-    mobileToggle.setAttribute('aria-expanded', 'true');
-    document.body.style.overflow = 'hidden'; // Evita el scroll del fondo
-  };
+  if (mobileToggle && navMenu && navOverlay) {
+    const setMenu = (open) => {
+      mobileToggle.classList.toggle('is-active', open);
+      navMenu.classList.toggle('is-open', open);
+      navOverlay.classList.toggle('is-active', open);
+      mobileToggle.setAttribute('aria-expanded', String(open));
+      document.body.style.overflow = open ? 'hidden' : '';
+    };
+    mobileToggle.addEventListener('click', () => setMenu(!navMenu.classList.contains('is-open')));
+    navOverlay.addEventListener('click', () => setMenu(false));
+    document.querySelectorAll('.nav-link').forEach(l => l.addEventListener('click', () => setMenu(false)));
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && navMenu.classList.contains('is-open')) setMenu(false);
+    });
+  }
 
-  // Función para cerrar el menú
-  const closeMenu = () => {
-    mobileToggle.classList.remove('is-active');
-    navMenu.classList.remove('is-open');
-    navOverlay.classList.remove('is-active');
-    mobileToggle.setAttribute('aria-expanded', 'false');
-    document.body.style.overflow = ''; // Restaura el scroll
-  };
-
-  // Alternar apertura / cierre con el botón de hamburguesa
-  mobileToggle.addEventListener('click', () => {
-    const isOpen = navMenu.classList.contains('is-open');
-    if (isOpen) {
-      closeMenu();
-    } else {
-      openMenu();
-    }
-  });
-
-  // Cerrar al hacer clic en el telón / overlay exterior
-  navOverlay.addEventListener('click', closeMenu);
-
-  // Cerrar al presionar cualquier enlace de navegación
-  navLinks.forEach(link => {
-    link.addEventListener('click', closeMenu);
-  });
-
-  // Cerrar al presionar la tecla Escape en el teclado
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && navMenu.classList.contains('is-open')) {
-      closeMenu();
-    }
-  });
-});
-  // ==========================================
-  // HERO SLIDER AUTOMÁTICO E INTERACTIVO
-  // ==========================================
+  // ---------- HERO SLIDER ----------
   const heroSlides = document.querySelectorAll('.hero-slide');
   const slideNum = document.getElementById('hero-slide-num');
   const slideName = document.getElementById('hero-slide-name');
   const dots = document.querySelectorAll('.hero-dot');
 
   if (heroSlides.length > 0) {
-    let currentSlide = 0;
-    const slideInterval = 5500; // 5.5 segundos por foto
-    let autoSlideTimer = null;
+    let current = 0;
+    let heroTimer = null;
 
-    function goToSlide(index) {
-      // Remover clase activa de diapositiva y punto anterior
-      heroSlides[currentSlide].classList.remove('active');
-      if (dots[currentSlide]) {
-        dots[currentSlide].classList.remove('active');
-        dots[currentSlide].setAttribute('aria-pressed', 'false');
+    const goToSlide = (index) => {
+      heroSlides[current].classList.remove('active');
+      if (dots[current]) {
+        dots[current].classList.remove('active');
+        dots[current].setAttribute('aria-pressed', 'false');
       }
-
-      currentSlide = index;
-
-      // Activar nueva diapositiva y punto
-      heroSlides[currentSlide].classList.add('active');
-      if (dots[currentSlide]) {
-        dots[currentSlide].classList.add('active');
-        dots[currentSlide].setAttribute('aria-pressed', 'true');
+      current = index;
+      heroSlides[current].classList.add('active');
+      if (dots[current]) {
+        dots[current].classList.add('active');
+        dots[current].setAttribute('aria-pressed', 'true');
       }
-
-      // Actualizar texto y enlace del proyecto en pantalla
-      const activeSlide = heroSlides[currentSlide];
-      const projectNum = activeSlide.getAttribute('data-num');
-      const projectName = activeSlide.getAttribute('data-project');
-      const projectLink = activeSlide.getAttribute('data-link') || '#obras';
-
-      if (slideNum) slideNum.textContent = projectNum;
+      const s = heroSlides[current];
+      if (slideNum) slideNum.textContent = s.getAttribute('data-num');
       if (slideName) {
-        slideName.setAttribute('href', projectLink);
-        slideName.innerHTML = `<span>${projectName}</span><span class="hero-project-arrow">&rarr;</span>`;
+        slideName.setAttribute('href', s.getAttribute('data-link') || '#obras');
+        slideName.innerHTML = `<span>${s.getAttribute('data-project')}</span><span class="hero-project-arrow">&rarr;</span>`;
       }
-    }
-
-    function nextSlide() {
-      const nextIndex = (currentSlide + 1) % heroSlides.length;
-      goToSlide(nextIndex);
-    }
-
-    function resetTimer() {
-      if (autoSlideTimer) clearInterval(autoSlideTimer);
-      autoSlideTimer = setInterval(nextSlide, slideInterval);
-    }
-
-    // Permitir clic en los puntos indicadores
-    dots.forEach((dot, idx) => {
-      dot.addEventListener('click', () => {
-        goToSlide(idx);
-        resetTimer();
-      });
-    });
-
-    // Iniciar temporizador
-    resetTimer();
+    };
+    const resetHero = () => {
+      clearInterval(heroTimer);
+      heroTimer = setInterval(() => goToSlide((current + 1) % heroSlides.length), 5500);
+    };
+    dots.forEach((dot, idx) => dot.addEventListener('click', () => { goToSlide(idx); resetHero(); }));
+    resetHero();
   }
 
-  // ==========================================
-  // FILTRADO DINÁMICO DE OBRAS
-  // ==========================================
+  // ---------- FILTRADO DE OBRAS ----------
   const filterBtns = document.querySelectorAll('.filter-btn');
   const obraCards = document.querySelectorAll('.obra-card');
 
   filterBtns.forEach(btn => {
     btn.addEventListener('click', () => {
-      // 1. Quitar clase 'active' de todos los botones y asignarla al clickeado
       filterBtns.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-
-      const filterValue = btn.getAttribute('data-filter');
-
-      // 2. Iterar tarjetas con transición suave de desvanecimiento
+      const value = btn.getAttribute('data-filter');
       obraCards.forEach(card => {
-        const cardCategory = card.getAttribute('data-category');
-
-        if (filterValue === 'all' || cardCategory === filterValue) {
-          // Mostrar tarjeta
+        const show = value === 'all' || card.getAttribute('data-category') === value;
+        if (show) {
           card.style.display = 'block';
-          setTimeout(() => {
-            card.style.opacity = '1';
-            card.style.transform = 'translateY(0) scale(1)';
-          }, 50);
+          setTimeout(() => { card.style.opacity = '1'; card.style.transform = 'translateY(0) scale(1)'; }, 50);
         } else {
-          // Ocultar tarjeta
           card.style.opacity = '0';
           card.style.transform = 'translateY(15px) scale(0.96)';
-          setTimeout(() => {
-            card.style.display = 'none';
-          }, 350);
+          setTimeout(() => { card.style.display = 'none'; }, 350);
         }
       });
     });
   });
-// Mini Slider Automático en Sección Contacto
-const contactoSlides = document.querySelectorAll('.contacto-slide');
-if (contactoSlides.length > 0) {
-  let currentContactoSlide = 0;
-  setInterval(() => {
-    contactoSlides[currentContactoSlide].classList.remove('active');
-    currentContactoSlide = (currentContactoSlide + 1) % contactoSlides.length;
-    contactoSlides[currentContactoSlide].classList.add('active');
-  }, 4000); // Cambia de imagen cada 4 segundos
-}
-/* ==========================================================================
-   LÓGICA DE GALERÍA INTERACTIVA - CASA DEL OLIVO (7 IMÁGENES)
-   ========================================================================== */
 
-document.addEventListener('DOMContentLoaded', () => {
-  const galeriaImg = document.getElementById('galeria-img');
-  const galeriaCounter = document.getElementById('galeria-counter');
-  const btnPrev = document.getElementById('galeria-prev');
-  const btnNext = document.getElementById('galeria-next');
-
-  // Si no existen los elementos en la página actual, finaliza
-  if (!galeriaImg || !galeriaCounter || !btnPrev || !btnNext) return;
-
-  // Lista de las 7 imágenes (reemplazá o agrega las rutas según tus archivos)
-  const imagenes = [
-    'img/casa olivo/casa del olivo.jpg',
-    'img/casa olivo/casa del olivo cocina comedor.jpg',
-    'img/casa olivo/casa del olivo dormitorio principal.jpg',
-    'img/casa olivo/casa del olivo terraza.jpg',
-    'img/casa olivo/casa del olivo vista exterior.jpg',
-    'img/casa olivo/casa del olivo sala de estar.jpg',
-    'img/casa olivo/casa del olivo vista trasera.jpg'
-  ];
-
-  let currentIndex = 0;
-  let autoPlayTimer = null;
-
-  const TIEMPO_PASIVO = 4000; // 4 segundos entre cambios automáticos
-  const TIEMPO_ACTIVO = TIEMPO_PASIVO * 2; // 8 segundos tras clic manual
-
-  // Función para actualizar imagen y contador
-  function updateGallery(index) {
-    currentIndex = index;
-
-    if (currentIndex < 0) {
-      currentIndex = imagenes.length - 1;
-    } else if (currentIndex >= imagenes.length) {
-      currentIndex = 0;
-    }
-
-    // Efecto de transición (fade out/in)
-    galeriaImg.style.opacity = '0.3';
-    setTimeout(() => {
-      galeriaImg.src = imagenes[currentIndex];
-      galeriaImg.style.opacity = '1';
-    }, 150);
-
-    // Formatear contador (01 / 07, 02 / 07...)
-    const numFormatted = String(currentIndex + 1).padStart(2, '0');
-    const totalFormatted = String(imagenes.length).padStart(2, '0');
-    galeriaCounter.innerHTML = `CASA DEL OLIVO &nbsp; ${numFormatted} / ${totalFormatted}`;
+  // ---------- SLIDER DE CONTACTO ----------
+  const contactoSlides = document.querySelectorAll('.contacto-slide');
+  if (contactoSlides.length > 0) {
+    let c = 0;
+    setInterval(() => {
+      contactoSlides[c].classList.remove('active');
+      c = (c + 1) % contactoSlides.length;
+      contactoSlides[c].classList.add('active');
+    }, 4000);
   }
 
-  // Reiniciar el temporizador con el retardo especificado
-  function resetTimer(delay) {
-    if (autoPlayTimer) clearTimeout(autoPlayTimer);
-    
-    autoPlayTimer = setTimeout(() => {
-      nextImage();
-      resetTimer(TIEMPO_PASIVO); // Vuelve al intervalo pasivo normal
-    }, delay);
+  // ---------- GALERÍA DE PROYECTO ----------
+  // Casa del Olivo usa la lista por defecto. Las demás páginas definen
+  // window.GALERIA_FOTOS en su HTML y, opcionalmente, data-nombre en #galeria-viewer.
+  const galImg = document.getElementById('galeria-img');
+  const galCounter = document.getElementById('galeria-counter');
+  const galPrev = document.getElementById('galeria-prev');
+  const galNext = document.getElementById('galeria-next');
+
+  if (galImg && galCounter && galPrev && galNext) {
+    const fotos = window.GALERIA_FOTOS || [
+      'img/casa olivo/casa del olivo.jpg',
+      'img/casa olivo/casa del olivo cocina comedor.jpg',
+      'img/casa olivo/casa del olivo dormitorio principal.jpg',
+      'img/casa olivo/casa del olivo terraza.jpg',
+      'img/casa olivo/casa del olivo vista exterior.jpg',
+      'img/casa olivo/casa del olivo sala de estar.jpg',
+      'img/casa olivo/casa del olivo vista trasera.jpg'
+    ];
+    const viewer = document.getElementById('galeria-viewer');
+    const nombre = (viewer && viewer.dataset.nombre) || 'CASA DEL OLIVO';
+    const PASIVO = 4000, ACTIVO = 8000;
+    let i = 0, timer = null;
+
+    const mostrar = (n) => {
+      i = (n + fotos.length) % fotos.length;
+      galImg.style.opacity = '0.3';
+      setTimeout(() => { galImg.src = fotos[i]; galImg.style.opacity = '1'; }, 150);
+      const a = String(i + 1).padStart(2, '0');
+      const t = String(fotos.length).padStart(2, '0');
+      galCounter.innerHTML = `${nombre} &nbsp;&mdash;&nbsp; ${a} / ${t}`;
+    };
+    const programar = (ms) => {
+      clearTimeout(timer);
+      timer = setTimeout(() => { mostrar(i + 1); programar(PASIVO); }, ms);
+    };
+    galNext.addEventListener('click', () => { mostrar(i + 1); programar(ACTIVO); });
+    galPrev.addEventListener('click', () => { mostrar(i - 1); programar(ACTIVO); });
+    programar(PASIVO);
   }
 
-  function nextImage() {
-    updateGallery(currentIndex + 1);
+  // ---------- SCROLL REVEAL ----------
+  const revealEls = document.querySelectorAll('.reveal');
+  if (revealEls.length > 0) {
+    const obs = new IntersectionObserver((entries, o) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('active'); o.unobserve(e.target); }
+      });
+    }, { root: null, threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+    revealEls.forEach(el => obs.observe(el));
   }
-
-  function prevImage() {
-    updateGallery(currentIndex - 1);
-  }
-
-  // Evento Clic Siguiente (Activo)
-  btnNext.addEventListener('click', () => {
-    nextImage();
-    resetTimer(TIEMPO_ACTIVO); // Duplica el tiempo a 8 segundos
-  });
-
-  // Evento Clic Anterior (Activo)
-  btnPrev.addEventListener('click', () => {
-    prevImage();
-    resetTimer(TIEMPO_ACTIVO); // Duplica el tiempo a 8 segundos
-  });
-
-  // Iniciar la galería en modo pasivo
-  resetTimer(TIEMPO_PASIVO);
-});
-// ==========================================================================
-// SCROLL REVEAL (INTERSECTION OBSERVER)
-// ==========================================================================
-document.addEventListener('DOMContentLoaded', () => {
-  const revealElements = document.querySelectorAll('.reveal');
-
-  if (revealElements.length === 0) return;
-
-  const observerOptions = {
-    root: null,
-    threshold: 0.1, // Dispara la animación apenas asoma un 10% del elemento
-    rootMargin: "0px 0px -30px 0px"
-  };
-
-  const revealObserver = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('active');
-        observer.unobserve(entry.target); // Queda fijo una vez animado
-      }
-    });
-  }, observerOptions);
-
-  revealElements.forEach(el => revealObserver.observe(el));
 });

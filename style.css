@@ -2453,3 +2453,23 @@ body.obra-detalle-body .page-link:hover {
     transition: none;
   }
 }
+
+/* ==========================================================================
+   PÁGINAS LEGALES (privacidad.html / terminos.html)
+   ========================================================================== */
+.legal {
+  max-width: 760px;
+  padding: 150px 20px 80px;
+  line-height: 1.8;
+  color: #bbb;
+}
+.legal h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 400;
+  color: #fff;
+}
+.legal h2 {
+  font-size: 1rem;
+  color: #fff;
+  margin-top: 2rem;
+}
