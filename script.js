@@ -248,3 +248,28 @@ document.addEventListener('DOMContentLoaded', () => {
   // Iniciar la galería en modo pasivo
   resetTimer(TIEMPO_PASIVO);
 });
+// ==========================================================================
+// SCROLL REVEAL (INTERSECTION OBSERVER)
+// ==========================================================================
+document.addEventListener('DOMContentLoaded', () => {
+  const revealElements = document.querySelectorAll('.reveal');
+
+  if (revealElements.length === 0) return;
+
+  const observerOptions = {
+    root: null,
+    threshold: 0.1, // Dispara la animación apenas asoma un 10% del elemento
+    rootMargin: "0px 0px -30px 0px"
+  };
+
+  const revealObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('active');
+        observer.unobserve(entry.target); // Queda fijo una vez animado
+      }
+    });
+  }, observerOptions);
+
+  revealElements.forEach(el => revealObserver.observe(el));
+});
