@@ -499,7 +499,7 @@ button {
    ========================================== */
 @media (max-width: 768px) {
   .hero {
-    height: 90dvh; /* Cubre el 100% exacto de la pantalla limpia */
+    height: 88dvh; /* Cubre el 100% exacto de la pantalla limpia */
   }
 
   .hero-slide {
@@ -2561,3 +2561,6 @@ body.obra-detalle-body .page-link:hover {
 }
 .gracias-demo a { color: #fff; text-decoration: underline; }
 .copyright a { color: inherit; text-decoration: underline; }
+
+/* Páginas de proyecto: espacio inferior para que el botón flotante no tape "Siguiente proyecto" */
+body.obra-detalle-body { padding-bottom: 96px; }
