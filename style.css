@@ -2473,3 +2473,91 @@ body.obra-detalle-body .page-link:hover {
   color: #fff;
   margin-top: 2rem;
 }
+
+/* ==========================================================================
+   BOTÓN FLOTANTE DE WHATSAPP
+   ========================================================================== */
+.whatsapp-float {
+  position: fixed;
+  right: 16px;
+  bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+  z-index: 900;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 18px;
+  background: #25D366;
+  color: #fff;
+  border-radius: 999px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.whatsapp-float:hover,
+.whatsapp-float:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.45);
+}
+@media (max-width: 480px) {
+  .whatsapp-float { padding: 12px 16px; font-size: 0.75rem; }
+}
+
+/* Animación del botón de WhatsApp: entrada suave + pulso discreto */
+.whatsapp-float {
+  opacity: 0;
+  transform: translateY(20px);
+  animation:
+    whatsapp-in 0.6s ease-out 1.5s forwards,
+    whatsapp-pulse 3s ease-out 3s infinite;
+}
+.whatsapp-float:hover,
+.whatsapp-float:focus-visible {
+  animation: none;
+  opacity: 1;
+  transform: translateY(-2px);
+}
+@keyframes whatsapp-in {
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes whatsapp-pulse {
+  0%   { box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35), 0 0 0 0 rgba(37, 211, 102, 0.55); }
+  70%  { box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35), 0 0 0 16px rgba(37, 211, 102, 0); }
+  100% { box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35), 0 0 0 0 rgba(37, 211, 102, 0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .whatsapp-float { animation: none; opacity: 1; transform: none; }
+}
+
+/* ==========================================================================
+   PÁGINA DE GRACIAS Y ESTADO DEL FORMULARIO
+   ========================================================================== */
+.gracias { text-align: left; }
+.gracias-acciones {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 24px;
+  margin-top: 2.5rem;
+}
+.gracias-acciones .btn-contacto { display: inline-flex; width: auto; text-decoration: none; }
+.form-status {
+  margin-top: 16px;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+.form-status.is-error { color: #e7a39b; }
+.form-status.is-error a { color: inherit; text-decoration: underline; }
+.btn-contacto:disabled { opacity: 0.6; cursor: wait; }
+
+.gracias-demo {
+  margin-top: 2rem;
+  padding: 16px 20px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  font-size: 0.9rem;
+}
+.gracias-demo a { color: #fff; text-decoration: underline; }
+.copyright a { color: inherit; text-decoration: underline; }

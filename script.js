@@ -138,6 +138,43 @@ document.addEventListener('DOMContentLoaded', () => {
     programar(PASIVO);
   }
 
+  // ---------- FORMULARIO DE CONTACTO (Formspree) ----------
+  const form = document.querySelector('.contacto-form');
+  if (form) {
+    const boton = form.querySelector('button[type="submit"]');
+    const estado = document.createElement('p');
+    estado.className = 'form-status';
+    estado.setAttribute('role', 'status');
+    form.appendChild(estado);
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      estado.className = 'form-status';
+      estado.textContent = '';
+      boton.disabled = true;
+      const textoOriginal = boton.innerHTML;
+      boton.textContent = 'ENVIANDO…';
+
+      try {
+        const resp = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { Accept: 'application/json' }
+        });
+        if (resp.ok) {
+          window.location.href = 'gracias.html';
+          return;
+        }
+        throw new Error('Respuesta no válida');
+      } catch (err) {
+        estado.className = 'form-status is-error';
+        estado.innerHTML = 'No pudimos enviar tu mensaje. Probá de nuevo o escribinos por <a href="https://wa.me/5493525632567" target="_blank" rel="noopener noreferrer">WhatsApp</a>.';
+        boton.disabled = false;
+        boton.innerHTML = textoOriginal;
+      }
+    });
+  }
+
   // ---------- SCROLL REVEAL ----------
   const revealEls = document.querySelectorAll('.reveal');
   if (revealEls.length > 0) {
