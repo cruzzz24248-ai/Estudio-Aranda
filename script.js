@@ -1,7 +1,7 @@
 /* ==========================================================================
    ESTUDIO ARANDA — SCRIPT ÚNICO
-   Menú móvil, hero slider, filtros, slider de contacto, galería de proyecto
-   y animaciones de scroll.
+   Menú móvil, hero slider, filtros, paneles de materia, slider de contacto,
+   galería de proyecto y animaciones de scroll.
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -87,6 +87,18 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // ---------- PANELES DE MATERIA ----------
+  const matPanels = document.querySelectorAll('.mat-panel');
+  if (matPanels.length > 0) {
+    const openPanel = (p) => matPanels.forEach((x) => x.classList.toggle('is-open', x === p));
+    const canHover = window.matchMedia('(hover: hover) and (min-width: 901px)');
+    matPanels.forEach((p) => {
+      p.addEventListener('click', () => openPanel(p));
+      p.addEventListener('focus', () => openPanel(p));
+      p.addEventListener('mouseenter', () => { if (canHover.matches) openPanel(p); });
+    });
+  }
+
   // ---------- SLIDER DE CONTACTO ----------
   const contactoSlides = document.querySelectorAll('.contacto-slide');
   if (contactoSlides.length > 0) {
@@ -108,13 +120,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (galImg && galCounter && galPrev && galNext) {
     const fotos = window.GALERIA_FOTOS || [
-      'img/casa olivo/casa del olivo.jpg',
-      'img/casa olivo/casa del olivo cocina comedor.jpg',
-      'img/casa olivo/casa del olivo dormitorio principal.jpg',
-      'img/casa olivo/casa del olivo terraza.jpg',
-      'img/casa olivo/casa del olivo vista exterior.jpg',
-      'img/casa olivo/casa del olivo sala de estar.jpg',
-      'img/casa olivo/casa del olivo vista trasera.jpg'
+      'img/casa-olivo/olivo-fachada.webp',
+      'img/casa-olivo/olivo-exterior.webp',
+      'img/casa-olivo/olivo-acceso.webp',
+      'img/casa-olivo/olivo-terraza.webp',
+      'img/casa-olivo/olivo-sala.webp',
+      'img/casa-olivo/olivo-cocina-comedor.webp',
+      'img/casa-olivo/olivo-dormitorio.webp',
+      'img/casa-olivo/olivo-trasera.webp'
     ];
     const viewer = document.getElementById('galeria-viewer');
     const nombre = (viewer && viewer.dataset.nombre) || 'CASA DEL OLIVO';
